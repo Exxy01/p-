@@ -1,0 +1,22 @@
+.heading{
+    color:white;
+    margin:0px;
+    font-size:20px;
+    width:100%;
+    }
+#sreece1, #sreece2, #sreece{
+        color:black;
+        background-color:aqua;
+        border-radius: 20px;
+        width:200px;
+    }
+    #sreece1{
+        float:right;
+
+    }
+    #sreece2{
+        float:left;
+    }
+    body{
+        background-size:cover
+    }

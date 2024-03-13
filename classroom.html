@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Object detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+  <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+
+  <body background = "bedroom.jpg">
+    <center>
+        <h3 class = "btn btn-warning heading" >object detection
+          <br>
+          <span class = "note">NOTE - switch tabs to see different images</span>
+        </h3>
+      <h3 id = "status"></h3>
+     
+        </center>
+        <script>
+          status = "";
+          object1 = [];
+          function preload(){
+            image = loadImage("bedroom.jpg")
+          }
+          function setup(){
+            canvas = createCanvas(400,400);
+            canvas.center();
+            objectDetection = ml5.objectDetector("cocossd", modelLoaded);
+            document.getElementById("status").innerHTML = "STATUS:DETECTING OBJECTS";
+          }
+          function draw(){
+            image(image,0,0,400,400)
+            if(status != ""){
+              for(i = 0; i < object.length[0]; i++);
+              document.getElementById("status").innerHTML = "STATUS:DETECTED";
+              fill("#000000");
+              confidence = floor(object[i].confidence * 100);
+              text(object[i].label + "" + object[i].confidence + "%", object[i].x, object[i].y)
+              stroke("#000000");
+              rect(object[i].x, object[i].height, object[i].width, object[i].height);
+            }
+          }
+       function modelLoaded(){
+            console.log("model Loaded.");
+        status = true;
+            objectDetction.detect(image, gotResults);
+          }
+          function gotResults(error, results){
+    if(error){
+        console.error(error);
+    }
+    console.log(results);
+    object = results;
+}
+          </script>
+ 
+ </body>
+ </html>
+
+
+
+ 
+
